@@ -1,0 +1,11 @@
+decompile ./level03
+
+the important part is the decrypt function
+it used a xor on a saved string against a char 
+and if a the result match "Congratulations!", it execute system("/bin/sh")
+
+the char is the result of 322424845 - scanf("%d", input)
+but the test function will only send a nonrandom  char if the result is between 1 and 21 included
+we can either brute force each number so that 322424845 - input is between 1 and 21
+or we can check wich number when xor'ed with the encryption key string result in Congratulations!
+either way the number is 18 so the input should be 322424845 - 18 = 322424827
