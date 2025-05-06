@@ -1,0 +1,51 @@
+Input command: store
+ Number: 1750122545
+ Index: 1073741824
+ Completed store command successfully
+Input command: read    
+ Index: 0         
+ Number at data[0] is 1750122545
+ Completed read  command successfully
+Input command: store
+ Number: 1752379183
+ Index: 1
+ Completed store command successfully
+Input command: store
+ Number: 1768042344
+ Index: 2
+ Completed store command successfully
+Input command: store
+ Number: 1357089134
+ Index: 1073741827
+ Completed store command successfully
+Input command: read 
+ Index: 3
+ Number at data[3] is 1357089134
+ Completed read  command successfully
+Input command: store
+ Number: 0x99e18953
+ Index: 4
+ Completed store command successfully
+Input command: store
+ Number: 2581694803
+ Index: 4
+ Completed store command successfully
+Input command: store     
+ Number: 2160921520
+ Index: 5
+ Completed store command successfully
+Input command: store
+ Number: 4294956372
+ Index: 1073741938
+ Completed store command successfully
+Input command: read  
+ Index: 144
+ Number at data[144] is 1
+ Completed read  command successfully
+Input command: read
+ Index: 114
+ Number at data[114] is 4294956372
+ Completed read command successfully
+Input command: quit
+Segmentation fault (core dumped)
+

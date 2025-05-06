@@ -1,7 +1,0 @@
-level05@OverRide:~$ echo "0xf7e6aed0 <system>"
-0xf7e6aed0 <system>
-level05@OverRide:~$ echo "0xf7f897ec '/bin/sh'"
-0xf7f897ec '/bin/sh'
-level05@OverRide:~$ objdump -R ./level05 | grep exit
-080497e0 R_386_JUMP_SLOT   exit
-
