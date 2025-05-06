@@ -1,0 +1,20 @@
+decompile ./level08
+
+the program tries to open 3 files: 
+ - ./backups/.log
+ - av[1]
+ - ./backups/av[1] in Exclusive mode (fail to open if file already exist)
+
+ our solution is to: 
+ - cd to /tmp
+ - create a backups directory in tmp to have full rights in it
+ - create a .log file in it
+ - create /tmp/backups/home/users/level09/
+ - make it so that when we pass it as av[1] : /home/users/level09/.pass
+ - the av[1] open will open the .pass
+
+and the ./backups/av[1] will open a new file in /tmp/backups/home/users/level09/.pass
+and put the password there
+
+
+
