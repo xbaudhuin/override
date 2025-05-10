@@ -9,9 +9,7 @@ int verify_user_name() {
   return (memcmp(a_user_name, "dat_wil", 7) != 0);
 }
 
-int verify_user_pass(char *buffer) {
-  return (memcmp(buffer, "admin", 5) != 0);
-}
+int verify_user_pass(char *buffer) { return (memcmp(buffer, "admin", 5) != 0); }
 
 int main(void) {
   char buffer[64];

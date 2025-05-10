@@ -5,6 +5,7 @@
 #include <time.h>
 #include <unistd.h>
 
+// function added by the canary protection
 // equivalent to the call of __readgsdword(0x14) since it doesnt directly exist
 // in linux
 // all for this line : mov    eax,gs:0x14
@@ -22,7 +23,6 @@ int decrypt(char c) {
   unsigned int len;
   uint32_t tab[7];
 
-  // in asm:
   *((char *)&tab[4] + 1) = read_gs_dword(20);
   strcpy((char *)tab, "Q}|u`sfg~sf{}|a3");
   len = strlen((const char *)tab);

